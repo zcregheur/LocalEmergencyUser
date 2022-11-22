@@ -1,3 +1,6 @@
 Import-Module ActiveDirectory
-Get-ADComputer -Filter * -SearchBase "OU=Utilisateurs,DC=deshaies,DC=local" -Properties * |
-Select-Object -Property Name,LastLogonDate
+#Fetch every oneline computer inside the domain, list and save it 
+Get-ADComputer -Filter * -SearchBase "DC=deshaies,DC=local" -Properties * |
+Select-Object -Property Name |
+Export-Csv ".\templist.csv" -NoTypeInformation -Encoding UTF8
+
